@@ -12,7 +12,7 @@ pipeline {
         stage('Lint - verific sintaxa'){
             steps {
                 dir("${DIR_LUCRU}"){
-                    sh 'pip install flake8 --user'
+                    sh 'pip install flake8 --break-system-packages'
                     sh 'python3 -m flake8 .'  
                 }
             }
