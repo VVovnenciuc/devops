@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DIR_LUCRU = "jenkins/curs"
-        DOCKER_CREDENTIALS_ID = "ockerhub-credentials-id"
+        DOCKER_CREDENTIALS_ID = "dockerhub-credentials-id"
         DOCKERHUB_CREDENTIALS = credentials("${DOCKER_CREDENTIALS_ID}")
         IMAGE_NAME = "${DOCKERHUB_CREDENTIALS_USR}/curs-app"
         TAG = "$BUILD_NUMBER"
