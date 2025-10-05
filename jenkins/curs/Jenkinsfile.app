@@ -9,6 +9,23 @@ pipeline {
         TAG = "$BUILD_NUMBER"
     }
     stages {
+        stage('Lint - verific sintaxa'){
+            steps {
+                dir("${DIR_LUCRU}"){
+                    sh 'pip install flake8'
+                    sh 'python3 -m flake8 .'  
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+               dir("${DIR_LUCRU}"){
+                    sh 'pip install pytest'
+                    sh 'phyton -m pytest .'  
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
