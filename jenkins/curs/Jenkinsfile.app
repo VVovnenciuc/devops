@@ -22,7 +22,7 @@ pipeline {
             steps {
                dir("${DIR_LUCRU}"){
                     sh 'pip install pytest --break-system-packages'
-                    sh 'phyton -m pytest .'  
+                    sh 'phyton3 -m pytest .'  
                 }
             }
         }
