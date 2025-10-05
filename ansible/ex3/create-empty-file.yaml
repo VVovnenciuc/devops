@@ -1,0 +1,8 @@
+- name: Creează un fișier gol
+  hosts: all
+  tasks:
+    - name: Creez fișierul /tmp/test.txt
+      file:
+        path: /tmp/test.txt
+        state: touch
+        mode: u=rw,g=rw,o=r

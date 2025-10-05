@@ -1,0 +1,4 @@
+- name: Verifica daca domeniile sunt UP
+  hosts: all
+  vars_files:
+    - domains.yaml  

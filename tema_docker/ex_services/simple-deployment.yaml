@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-server-deployment
+  labels:
+    app: simple-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-server
+  template:
+    metadata:
+      labels:
+        app: simple-server
+    spec:
+      containers:
+      - name: simple-server
+        image: andreimihai/simple-server
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: simple-server
+  name: simple-server
+spec:
+  ports:
+  - port: 80
+    name: port-simple-server
+    protocol: TCP
+    targetPort: 8123
+  selector:
+    app: simple-server

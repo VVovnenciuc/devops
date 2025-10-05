@@ -1,0 +1,20 @@
+- name: Instalez un pachet din variabilă
+  hosts: all
+  become: true
+  vars:
+    pachet: htop
+    clean_install: false
+    
+  tasks:
+    - name: Intai sterge complet  {{ pachet }}
+      apt:
+        name: "{{ pachet }}"
+        state: absent
+        purge: yes
+      when: clean_install
+
+    - name: Instalez {{ pachet }}
+      apt:
+        name: "{{ pachet }}"
+        state: latest
+        update_cache: yes

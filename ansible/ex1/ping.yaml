@@ -1,0 +1,5 @@
+- name: Ping la hosturile din grupul all din inventar
+  hosts: all
+  tasks:
+    - name: Testez ping
+      ping:

@@ -1,0 +1,9 @@
+domains:
+  - google.com
+  - itschool.ro
+  - example.com
+
+subdomains: 
+  - www
+  - admin
+  - dev

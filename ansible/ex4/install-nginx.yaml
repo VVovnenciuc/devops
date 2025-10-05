@@ -1,0 +1,29 @@
+- name: Install NGINX
+  host: all
+  bacame: true
+
+  tasks:
+    - name: Actualizare lista de pachete
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    
+    - name: Instalam NGINX
+      hosts: all
+      become: true
+  tasks:
+    - name: Actualizam lista de pachete
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    
+    - name: Instaleaza NGINX
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Ma asigur ca a pornit NGINX
+      service:
+        name: nginx
+        state: started
+        enabled: yes

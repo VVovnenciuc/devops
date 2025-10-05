@@ -1,0 +1,10 @@
+- name: Conectare la baza de date
+  hosts: all
+  vars_files:
+    - secrets.yaml
+    
+  tasks: 
+    - name: ma conectez la baza de date
+      debug: 
+        msg: "Aici ma conectez la db folosind {{ db_user}} si {{ db_pass}}"
+        

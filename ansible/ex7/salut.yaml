@@ -1,0 +1,29 @@
+- name: Salut din NGINX
+  hosts: all
+  become: true
+
+  vars:
+    nume: "Vovnenciuc"
+
+  tasks:
+    - name: Verifica NGINX este UP
+      systemd:
+        name: nginx
+      register: status_nginx
+
+    - name: Afisam status NGINX
+      debug:
+        var:  status_nginx.status.ActiveState
+    
+    - name: Copiez salut.html
+      template:
+        src: salut.html.j2
+        dest: /var/www/html/salut.html
+      notify: Restart NGINX
+      when: status_nginx.status.ActiveState == "active"
+
+  handlers:
+    - name: Restart NGINX
+      service: 
+        name: nginx
+        state: restarted

@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    environment {
+        DIR_LUCRU = "jenkins/curs"
+    }
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello, World from Jenkins File!'
+            }
+        }
+        stage('Info Proiect') {
+            steps {
+                script {
+                    dir("${DIR_LUCRU}") {
+                        sh 'pwd'
+                        sh 'ls -al'
+                    }
+                }
+            }
+        }
+    }
+}

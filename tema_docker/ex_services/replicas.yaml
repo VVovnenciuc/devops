@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: simple-rs
+  labels:
+    run: simple
+    tier: simple-service
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: simple-label
+  template:
+    metadata:
+      labels:
+        tier: simple-label
+    spec:
+      containers:
+      - name: simple-container
+        image: andreimihai/simple-server:0.1.0
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: simple
+    tier: simple-label
+  name: simple-service
+spec:
+  ports:
+  - port: 8123
+    protocol: TCP
+    targetPort: 8123
+  selector:
+    tier: simple-label
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+

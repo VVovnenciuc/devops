@@ -1,0 +1,30 @@
+- name: Create user
+  hosts: all
+  become: true
+  vars:
+    nume_grup: docker
+    nume_user: 
+
+  tasks:
+    - name: Verificam daca grupul {{ nume_grup }} exista
+      command: grep -w {{ nume_grup }} /etc/group
+      register: group_command_rezultat
+      ignore_errors: true
+
+    - name: Afiseaza status comanda "cauta grup"
+      debug:
+        var: group_command_rezultat.rc 
+
+    - name: adauga userul
+      user:
+        name: "{{ nume_user }}"
+        state: present
+        create_home: yes
+        shell: /bin/bash
+
+    - name: Adauga userul in grup
+      user:
+        name: "{{ nume_user }}"
+        groups: "{{ nume_grup }}"
+        append: yes
+      when: group_command_rezultat.rc == 0

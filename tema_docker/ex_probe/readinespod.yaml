@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: readiness-pod
+  name: readiness-pod
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - echo "Intai Dorm" && sleep 15 && touch /tmp/healthy && echo 'Am create fisier' && sleep Infinity  
+    image: busybox
+    name: readiness-container
+    readinessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
