@@ -21,7 +21,7 @@ pipeline {
         stage('Test') {
             steps {
                dir("${DIR_LUCRU}"){
-                    sh 'pip install pytest'
+                    sh 'pip install pytest --break-system-packages'
                     sh 'phyton -m pytest .'  
                 }
             }
