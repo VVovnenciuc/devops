@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return jsonify(message="Hello from Docker Image!")
+    return jsonify(message="Hello everyone from Docker Image!")
 
 
 if __name__ == "__main__":
